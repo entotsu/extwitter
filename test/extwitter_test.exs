@@ -231,6 +231,13 @@ defmodule ExTwitterTest do
     end
   end
 
+  test "follow user" do
+    use_cassette "friends" do
+      friends_cursor = ExTwitter.follow("tk_365")
+      assert res = %ExTwitter.Model.User{}
+    end
+  end
+
   test "lookup user by screen_name" do
     use_cassette "lookup_user" do
       users = ExTwitter.user_lookup("twitter")

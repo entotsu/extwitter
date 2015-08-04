@@ -552,8 +552,18 @@ defmodule ExTwitter do
   # GET friendships/outgoing
   # https://dev.twitter.com/docs/api/1.1/get/friendships/outgoing
 
-  # POST friendships/create
+  @doc """
+  POST friendships/create
+
+  ## Examples
+
+      ExTwitter.follow("tk_365")
+
+  ## Reference
   # https://dev.twitter.com/docs/api/1.1/post/friendships/create
+  """
+  @spec follow(String.t) :: ExTwitter.Model.User.t
+  defdelegate follow(screen_name), to: ExTwitter.API.FriendsAndFollowers
 
   # POST friendships/destroy
   # https://dev.twitter.com/docs/api/1.1/post/friendships/destroy

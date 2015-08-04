@@ -25,6 +25,12 @@ defmodule ExTwitter.API.FriendsAndFollowers do
     follower_ids(get_id_option(id) ++ options)
   end
 
+  def follow(screen_name, options \\ []) do
+    params = ExTwitter.Parser.parse_request_params([screen_name: screen_name, follow: true] ++ options)
+    request(:post, "1.1/friendships/create.json", params)
+      |> ExTwitter.Parser.parse_user
+  end
+
   def friends(options) when is_list(options) do
     params = ExTwitter.Parser.parse_request_params(options)
     request(:get, "1.1/friends/list.json", params)
